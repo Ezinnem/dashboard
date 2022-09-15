@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Page1",
+    "pageId": "Customers",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -21,9 +21,9 @@
       "encodeParamsToggle": true,
       "formData": {
         "collection": {
-          "data": "Movies",
+          "data": "Customers",
           "viewType": "component",
-          "componentData": "Movies"
+          "componentData": "Customers"
         },
         "command": {
           "data": "DELETE",
@@ -62,7 +62,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Page1_DeleteQuery",
+  "id": "Customers_DeleteQuery",
   "deleted": false,
-  "gitSyncId": "632236aa607eb52d3c858284_6322ee8bf51aa4275afd544a"
+  "gitSyncId": "632236aa607eb52d3c858284_6323236ef51aa4275afd5a6b"
 }
