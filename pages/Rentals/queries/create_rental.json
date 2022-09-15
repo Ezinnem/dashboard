@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "get_all_customers",
+    "name": "create_rental",
     "datasource": {
       "name": "Organization",
       "pluginId": "mongo-plugin",
@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customers",
+    "pageId": "Rentals",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -28,10 +28,10 @@
           }
         },
         "collection": {
-          "data": "Customers"
+          "data": "Rentals"
         },
         "command": {
-          "data": "FIND"
+          "data": "INSERT"
         },
         "count": {
           "query": {
@@ -56,7 +56,7 @@
         },
         "find": {
           "skip": {
-            "data": "{{(customers_table.pageNo - 1) * 10}}"
+            "data": ""
           },
           "query": {
             "data": ""
@@ -65,7 +65,7 @@
             "data": ""
           },
           "limit": {
-            "data": "10"
+            "data": ""
           },
           "projection": {
             "data": ""
@@ -73,12 +73,12 @@
         },
         "insert": {
           "documents": {
-            "data": ""
+            "data": "{\n  \"status\": \"{{c_status_select.selectedOptionValue}}\",\n  \"rental_date\": \"{{date_of_rent.selectedDate}}\",\n  \"film_title\": \"{{c_film_title_select.selectedOptionValue}}\",\n  \"customer_email\": \"{{c_customer_select.selectedOptionValue}}\",\n  \"return_date\": \"{{DatePicker2.selectedDate}}\",\n  \"staff_id\": \"{{appsmith.user.email}}\",\n  \"last_update\": \"{{moment().format()}}\",\n}"
           }
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"find\": \"Customers\",\n  \"skip\": {{(customers_table.pageNo - 1) * 10}},\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "data": "{\n  \"insert\": \"Rentals\",\n  \"documents\": {\n  \"status\": \"{{c_status_select.selectedOptionValue}}\",\n  \"rental_date\": \"{{date_of_rent.selectedDate}}\",\n  \"film_title\": \"{{c_film_title_select.selectedOptionValue}}\",\n  \"customer_email\": \"{{c_customer_select.selectedOptionValue}}\",\n  \"return_date\": \"{{DatePicker2.selectedDate}}\",\n  \"staff_id\": \"{{appsmith.user.email}}\",\n  \"last_update\": \"{{moment().format()}}\",\n}\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -98,24 +98,30 @@
         }
       }
     },
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "dynamicBindingPathList": [
       {
-        "key": "formData.find.skip.data"
+        "key": "formData.insert.documents.data"
       }
     ],
     "isValid": true,
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "(customers_table.pageNo - 1) * 10"
+      "DatePicker2.selectedDate",
+      "appsmith.user.email",
+      "c_customer_select.selectedOptionValue",
+      "c_film_title_select.selectedOptionValue",
+      "c_status_select.selectedOptionValue",
+      "date_of_rent.selectedDate",
+      "moment().format()"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customers_get_all_customers",
+  "id": "Rentals_create_rental",
   "deleted": false,
-  "gitSyncId": "632236aa607eb52d3c858284_63223e11607eb52d3c8582b4"
+  "gitSyncId": "632236aa607eb52d3c858284_6322433df51aa4275afd4acd"
 }

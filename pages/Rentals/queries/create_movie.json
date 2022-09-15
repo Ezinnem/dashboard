@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "get_all_customers",
+    "name": "create_movie",
     "datasource": {
       "name": "Organization",
       "pluginId": "mongo-plugin",
@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customers",
+    "pageId": "Rentals",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -28,10 +28,10 @@
           }
         },
         "collection": {
-          "data": "Customers"
+          "data": "Movies"
         },
         "command": {
-          "data": "FIND"
+          "data": "INSERT"
         },
         "count": {
           "query": {
@@ -56,7 +56,7 @@
         },
         "find": {
           "skip": {
-            "data": "{{(customers_table.pageNo - 1) * 10}}"
+            "data": ""
           },
           "query": {
             "data": ""
@@ -65,7 +65,7 @@
             "data": ""
           },
           "limit": {
-            "data": "10"
+            "data": ""
           },
           "projection": {
             "data": ""
@@ -73,12 +73,12 @@
         },
         "insert": {
           "documents": {
-            "data": ""
+            "data": "{\n  \"title\": \"Alvin and Chimpchuks\",\n  \"description\": \"An animation for kids and preschoolers\",\n  \"release_year\": 2010,\n  \"language_id\": \"English\",\n  \"rental_duration\": 23,\n  \"rental_rate\": 40,\n  \"length\": 20,\n  \"replacement_cost\": 50,\n  \"rating\": \"Good\",\n  \"last_update\": \"2022-03-04T00:00:00.000+00:00\",\n  \"special_features\": \"Subtitles\",\n  \"fulltext\": \"Very educative\"\n}\n\n"
           }
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"find\": \"Customers\",\n  \"skip\": {{(customers_table.pageNo - 1) * 10}},\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "data": "{\n  \"insert\": \"Movies\",\n  \"documents\": {\n  \"title\": \"Alvin and Chimpchuks\",\n  \"description\": \"An animation for kids and preschoolers\",\n  \"release_year\": 2010,\n  \"language_id\": \"English\",\n  \"rental_duration\": 23,\n  \"rental_rate\": 40,\n  \"length\": 20,\n  \"replacement_cost\": 50,\n  \"rating\": \"Good\",\n  \"last_update\": \"2022-03-04T00:00:00.000+00:00\",\n  \"special_features\": \"Subtitles\",\n  \"fulltext\": \"Very educative\"\n}\n\n\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -98,24 +98,18 @@
         }
       }
     },
-    "executeOnLoad": true,
-    "dynamicBindingPathList": [
-      {
-        "key": "formData.find.skip.data"
-      }
-    ],
+    "executeOnLoad": false,
+    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "(customers_table.pageNo - 1) * 10"
-    ],
+    "jsonPathKeys": [],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customers_get_all_customers",
+  "id": "Rentals_create_movie",
   "deleted": false,
-  "gitSyncId": "632236aa607eb52d3c858284_63223e11607eb52d3c8582b4"
+  "gitSyncId": "632236aa607eb52d3c858284_6322433df51aa4275afd4ad0"
 }

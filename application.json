@@ -3,6 +3,14 @@
     {
       "id": "Customers",
       "isDefault": true
+    },
+    {
+      "id": "Rentals",
+      "isDefault": false
+    },
+    {
+      "id": "Page1",
+      "isDefault": false
     }
   ],
   "viewMode": false,

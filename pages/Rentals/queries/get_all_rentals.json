@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "get_all_customers",
+    "name": "get_all_rentals",
     "datasource": {
       "name": "Organization",
       "pluginId": "mongo-plugin",
@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customers",
+    "pageId": "Rentals",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -28,7 +28,7 @@
           }
         },
         "collection": {
-          "data": "Customers"
+          "data": "Rentals"
         },
         "command": {
           "data": "FIND"
@@ -56,7 +56,7 @@
         },
         "find": {
           "skip": {
-            "data": "{{(customers_table.pageNo - 1) * 10}}"
+            "data": "{{(rentals_table.pageNo - 1)* 10}}"
           },
           "query": {
             "data": ""
@@ -78,7 +78,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"find\": \"Customers\",\n  \"skip\": {{(customers_table.pageNo - 1) * 10}},\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "data": "{\n  \"find\": \"Rentals\",\n  \"skip\": {{(rentals_table.pageNo - 1)* 10}},\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -108,14 +108,14 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "(customers_table.pageNo - 1) * 10"
+      "(rentals_table.pageNo - 1)* 10"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customers_get_all_customers",
+  "id": "Rentals_get_all_rentals",
   "deleted": false,
-  "gitSyncId": "632236aa607eb52d3c858284_63223e11607eb52d3c8582b4"
+  "gitSyncId": "632236aa607eb52d3c858284_6322433df51aa4275afd4acf"
 }

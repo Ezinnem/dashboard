@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "get_all_customers",
+    "name": "update_rental",
     "datasource": {
       "name": "Organization",
       "pluginId": "mongo-plugin",
@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customers",
+    "pageId": "Rentals",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -28,10 +28,10 @@
           }
         },
         "collection": {
-          "data": "Customers"
+          "data": "Rentals"
         },
         "command": {
-          "data": "FIND"
+          "data": "UPDATE"
         },
         "count": {
           "query": {
@@ -55,17 +55,17 @@
           }
         },
         "find": {
-          "skip": {
-            "data": "{{(customers_table.pageNo - 1) * 10}}"
-          },
           "query": {
+            "data": "\"_id\" : {{rentals_table.selectedRow._id}},\n\n\"status\" : {{update_status.selectedOptionValue}},\n\n\"return_date\": {{update_return_date.selectedDate}},\n\"last_update\": {{moment().format()}}"
+          },
+          "skip": {
             "data": ""
           },
           "sort": {
             "data": ""
           },
           "limit": {
-            "data": "10"
+            "data": ""
           },
           "projection": {
             "data": ""
@@ -78,7 +78,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"find\": \"Customers\",\n  \"skip\": {{(customers_table.pageNo - 1) * 10}},\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "data": "{\n  \"update\": \"Rentals\",\n  \"updates\": [{\n    \"q\": {\"_id\" : \"{{rentals_table.selectedRow._id}}\"\n},\n    \"u\": { \n\"status\": \"{{update_status.selectedOptionValue}}\",\n\"return_date\": \"{{update_return_date.selectedDate}}\",\n\"last_update\": \"{{moment().format()}}\",\n},\n    \"multi\": false,\n  }]\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -90,32 +90,41 @@
             "data": "SINGLE"
           },
           "query": {
-            "data": ""
+            "data": "{\"_id\" : \"{{rentals_table.selectedRow._id}}\"\n}"
           },
           "update": {
-            "data": ""
+            "data": "{ \n\"status\": \"{{update_status.selectedOptionValue}}\",\n\"return_date\": \"{{update_return_date.selectedDate}}\",\n\"last_update\": \"{{moment().format()}}\",\n}"
           }
         }
       }
     },
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "dynamicBindingPathList": [
       {
-        "key": "formData.find.skip.data"
+        "key": "formData.find.query.data"
+      },
+      {
+        "key": "formData.updateMany.query.data"
+      },
+      {
+        "key": "formData.updateMany.update.data"
       }
     ],
     "isValid": true,
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "(customers_table.pageNo - 1) * 10"
+      "moment().format()",
+      "rentals_table.selectedRow._id",
+      "update_return_date.selectedDate",
+      "update_status.selectedOptionValue"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customers_get_all_customers",
+  "id": "Rentals_update_rental",
   "deleted": false,
-  "gitSyncId": "632236aa607eb52d3c858284_63223e11607eb52d3c8582b4"
+  "gitSyncId": "632236aa607eb52d3c858284_6322545e15fcab3301bd9d98"
 }

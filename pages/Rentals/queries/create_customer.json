@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "get_all_customers",
+    "name": "create_customer",
     "datasource": {
       "name": "Organization",
       "pluginId": "mongo-plugin",
@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customers",
+    "pageId": "Rentals",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -31,7 +31,7 @@
           "data": "Customers"
         },
         "command": {
-          "data": "FIND"
+          "data": "INSERT"
         },
         "count": {
           "query": {
@@ -56,7 +56,7 @@
         },
         "find": {
           "skip": {
-            "data": "{{(customers_table.pageNo - 1) * 10}}"
+            "data": ""
           },
           "query": {
             "data": ""
@@ -65,7 +65,7 @@
             "data": ""
           },
           "limit": {
-            "data": "10"
+            "data": ""
           },
           "projection": {
             "data": ""
@@ -73,12 +73,12 @@
         },
         "insert": {
           "documents": {
-            "data": ""
+            "data": "{\n  \"store_id\": \"2\",\n  \"first_name\": \"Angel\",\n  \"last_name\": \"Joan\",\n  \"email\": \"angeljoan@email.com\",\n  \"address_id\": \"Holy Heavens\",\n  \"activebool\": true,\n  \"create_date\": \"2022-01-01T00:00:00.000+00:00\",\n  \"last_update\": \"2022-01-01T00:00:00.000+00:00\",\n  \"active\": 1\n}"
           }
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"find\": \"Customers\",\n  \"skip\": {{(customers_table.pageNo - 1) * 10}},\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "data": "{\n  \"insert\": \"Customers\",\n  \"documents\": {\n  \"store_id\": \"2\",\n  \"first_name\": \"Angel\",\n  \"last_name\": \"Joan\",\n  \"email\": \"angeljoan@email.com\",\n  \"address_id\": \"Holy Heavens\",\n  \"activebool\": true,\n  \"create_date\": \"2022-01-01T00:00:00.000+00:00\",\n  \"last_update\": \"2022-01-01T00:00:00.000+00:00\",\n  \"active\": 1\n}\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -98,24 +98,18 @@
         }
       }
     },
-    "executeOnLoad": true,
-    "dynamicBindingPathList": [
-      {
-        "key": "formData.find.skip.data"
-      }
-    ],
+    "executeOnLoad": false,
+    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "(customers_table.pageNo - 1) * 10"
-    ],
+    "jsonPathKeys": [],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customers_get_all_customers",
+  "id": "Rentals_create_customer",
   "deleted": false,
-  "gitSyncId": "632236aa607eb52d3c858284_63223e11607eb52d3c8582b4"
+  "gitSyncId": "632236aa607eb52d3c858284_6322433df51aa4275afd4ad2"
 }
