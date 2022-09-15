@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "create_rental",
+    "name": "UpdateQuery",
     "datasource": {
       "name": "Organization",
       "pluginId": "mongo-plugin",
@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customers",
+    "pageId": "Movies",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -28,10 +28,14 @@
           }
         },
         "collection": {
-          "data": "Rentals"
+          "data": "Movies",
+          "viewType": "component",
+          "componentData": "Movies"
         },
         "command": {
-          "data": "INSERT"
+          "data": "UPDATE",
+          "viewType": "component",
+          "componentData": "UPDATE"
         },
         "count": {
           "query": {
@@ -39,11 +43,11 @@
           }
         },
         "delete": {
-          "limit": {
-            "data": "SINGLE"
-          },
           "query": {
             "data": ""
+          },
+          "limit": {
+            "data": "SINGLE"
           }
         },
         "distinct": {
@@ -55,16 +59,16 @@
           }
         },
         "find": {
-          "skip": {
-            "data": ""
-          },
           "query": {
             "data": ""
           },
-          "sort": {
+          "limit": {
             "data": ""
           },
-          "limit": {
+          "skip": {
+            "data": ""
+          },
+          "sort": {
             "data": ""
           },
           "projection": {
@@ -73,43 +77,57 @@
         },
         "insert": {
           "documents": {
-            "data": "{\n  \"status\": \"returned\",\n  \"rental_date\": \"2022-04-04T00:00:00.000+00:00\",\n  \"film_title\": \"Juice box carton\",\n  \"customer_email\": \"angeljoan@email.com\",\n  \"return_date\": \"2022-05-05T00:00:00.000+00:00\",\n  \"staff_id\": \"33\",\n  \"last_update\": \"2022-08-07T00:00:00.000+00:00\",\n}"
+            "data": ""
           }
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"insert\": \"Rentals\",\n  \"documents\": {\n  \"status\": \"returned\",\n  \"rental_date\": \"2022-04-04T00:00:00.000+00:00\",\n  \"film_title\": \"Juice box carton\",\n  \"customer_email\": \"angeljoan@email.com\",\n  \"return_date\": \"2022-05-05T00:00:00.000+00:00\",\n  \"staff_id\": \"33\",\n  \"last_update\": \"2022-08-07T00:00:00.000+00:00\",\n}\n}\n",
+            "data": "{\n  \"update\": \"Movies\",\n  \"updates\": [{\n    \"q\": { _id: ObjectId('{{data_table.selectedRow._id}}') },\n    \"u\": {\n  $set:{{update_form.formData}}\n},\n    \"multi\": false\n}]\n}\n",
             "status": "SUCCESS"
           }
         },
         "smartSubstitution": {
-          "data": true
+          "data": true,
+          "viewType": "component",
+          "componentData": true
         },
         "updateMany": {
-          "limit": {
-            "data": "SINGLE"
-          },
           "query": {
-            "data": ""
+            "data": "{ _id: ObjectId('{{data_table.selectedRow._id}}') }",
+            "viewType": "component",
+            "componentData": "{ _id: ObjectId('{{data_table.selectedRow._id}}') }"
+          },
+          "limit": {
+            "data": "SINGLE",
+            "viewType": "component",
+            "componentData": "SINGLE"
           },
           "update": {
-            "data": ""
+            "data": "{\n  $set:{{update_form.formData}}\n}",
+            "viewType": "component",
+            "componentData": "{\n  \"description\" : {{update_col_1.text}},\n\t\"title\" : {{update_col_2.text}},\n  \"fulltext\" : {{update_col_3.text}},\n  \"language_id\" : {{update_col_4.text}}\n}"
           }
         }
       }
     },
     "executeOnLoad": false,
-    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [],
+    "jsonPathKeys": [
+      "data_table.selectedRow._id",
+      "update_col_1.text",
+      "update_col_2.text",
+      "update_col_3.text",
+      "update_col_4.text",
+      "update_form.formData"
+    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customers_create_rental",
+  "id": "Movies_UpdateQuery",
   "deleted": false,
-  "gitSyncId": "632236aa607eb52d3c858284_63223ad2f51aa4275afd4a87"
+  "gitSyncId": "632236aa607eb52d3c858284_6322ee8bf51aa4275afd5448"
 }
