@@ -233,7 +233,7 @@
                       "dataType": "string",
                       "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.title))(update_form.sourceData, update_form.formData, update_form.fieldState)}}",
                       "fieldType": "Text Input",
-                      "sourceData": "Cocomelon Cartoon",
+                      "sourceData": "Test session",
                       "isCustomField": false,
                       "accessor": "title",
                       "identifier": "title",
@@ -313,7 +313,7 @@
                     "rating": "Good",
                     "description": "An animation for kids and preschoolers",
                     "language_id": "English",
-                    "title": "Cocomelon Cartoon",
+                    "title": "Test session",
                     "last_update": "2022-04-04T01:00:00.000+01:00",
                     "fulltext": "Very educative"
                   },
