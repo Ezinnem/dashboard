@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Page1",
+    "pageId": "Movies",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -65,7 +65,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Page1_InsertQuery",
+  "id": "Movies_InsertQuery",
   "deleted": false,
   "gitSyncId": "632236aa607eb52d3c858284_6322ee8bf51aa4275afd5449"
 }

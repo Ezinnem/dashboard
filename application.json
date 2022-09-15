@@ -1,16 +1,16 @@
 {
   "pages": [
     {
-      "id": "Customers",
-      "isDefault": true
-    },
-    {
       "id": "Rentals",
       "isDefault": false
     },
     {
-      "id": "Page1",
+      "id": "Movies",
       "isDefault": false
+    },
+    {
+      "id": "Customers",
+      "isDefault": true
     }
   ],
   "viewMode": false,
